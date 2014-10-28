@@ -14,7 +14,7 @@ public class Main {
 		vEBTree vebtree = new vEBTree(U);
 		SplayTree splaytree = new SplayTree();
 		
-		for(int n=1024;n <= Math.pow(2,20); n*=2){
+		for(int n=1024;n <= 1024*1024; n*=2){
 			Kn = new int[n];
 			seq1 = new int[100*n];
 			seq2 = new int[100*n];
@@ -37,7 +37,7 @@ public class Main {
 			int k = 0;
 			while(i <= 100*n){
 				double a = 1.2;
-				double c = calcC2(a,100*n);
+				double c = getC2(a,100*n);
 				double freq_k = c/Math.pow(a,k+1); /* frecuencia de Kn[k] */
 				int cant_k = (int)(100*n*freq_k); /* cantidad de Kn[k] */
 				int j = i;
@@ -55,7 +55,7 @@ public class Main {
 			k = 0;
 			while(i <= 100*n){
 				double a = 1.2;
-				double c = calcC3(a,100*n);
+				double c = getC3(a,100*n);
 				double freq_k = c/Math.pow(k+1,a); /* frecuencia de Kn[k] */
 				int cant_k = (int)(100*n*freq_k); /* cantidad de Kn[k] */
 				int j = i;
@@ -248,13 +248,13 @@ public class Main {
 			}
 			
 			for (int j = 0; j < 5; j++){
-				search_seq2[j] = watches[j].getElapsedTime();
+				search_seq3[j] = watches[j].getElapsedTime();
 				watches[j].reset();
 			}
 		}
 	}
 	
-	static public double calcC2(double a, int n){
+	static public double getC2(double a, int n){
 		double sum = 0.0;
 		for (int i = 1; i <= n; i++){
 			sum += 1/Math.pow(i,a);
@@ -262,7 +262,7 @@ public class Main {
 		return 1.0/sum;
 	}
 	
-	static public double calcC3(double a, int n){
+	static public double getC3(double a, int n){
 		double sum = 0.0;
 		for (int i = 1; i <= n; i++){
 			sum += 1/Math.pow(a,i);
