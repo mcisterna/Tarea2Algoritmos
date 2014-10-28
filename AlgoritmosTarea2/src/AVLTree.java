@@ -2,8 +2,8 @@
 public class AVLTree {
 	IAVLNode root;
 	
-	public AVLTree(int k){
-		root = insert(k,root);
+	public AVLTree(){
+		root = new NullAVLNode();
 	}
 	
 	void insert(int x){

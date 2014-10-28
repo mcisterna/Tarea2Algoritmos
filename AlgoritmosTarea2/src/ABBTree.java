@@ -3,24 +3,30 @@ public class ABBTree {
 	ABBTree right, left;
 	int key;
 	
-	public ABBTree(int k){
-		key = k;
+	public ABBTree(){
+		key = -1;
 		right = left = null;
 	}
 	
-	void insert(int n){
-		if(n < key){
-			if(left == null)
-				left = new ABBTree(n);
-			else
-				left.insert(n);
-		}else if(n > key){
-			if(right == null)
-				right = new ABBTree(n);
-			else
-				right.insert(n);
-		}else
+	public void insert(int n){
+		if(key < 0)
 			key = n;
+		else{
+			if(n < key){
+				if(left == null){
+					left = new ABBTree();
+					left.key = n;
+				}else
+					left.insert(n);
+			}else if(n > key){
+				if(right == null){
+					right = new ABBTree();
+					right.key = n;
+				}else
+					right.insert(n);
+			}else
+				key = n;
+		}
 	}
 	
 	boolean search(int s){
@@ -29,6 +35,6 @@ public class ABBTree {
 		else if(s > key)
 			return right != null ? right.search(s) : false;
 		else /* s == key */
-			return true;
+			return key >= 0;
 	}
 }
