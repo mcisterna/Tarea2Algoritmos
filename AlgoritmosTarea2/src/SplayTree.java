@@ -19,7 +19,7 @@ public class SplayTree {
         return key == root.key;
     }
     
-    void insert(int key){
+    public void insert(int key){
         if (root == null) {
             root = new Node(key);
             return;
