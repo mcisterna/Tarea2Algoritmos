@@ -63,9 +63,9 @@ public class AVLTree {
 		if(n instanceof NullAVLNode)
 			return false;
 		if(s < root.key)
-			return search(s,root.left);
+			return search(s,n.left);
 		else if(s > root.key)
-			return search(s,root.right);
+			return search(s,n.right);
 		else /* s == root.key */
 			return true;
 	}

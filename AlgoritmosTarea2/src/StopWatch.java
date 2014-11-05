@@ -1,9 +1,13 @@
+import java.util.ArrayList;
+
 public class StopWatch {
 	
 	private long startTime;
 	private long finalTime;
+	private ArrayList<Long> acumulados;
 	
 	public StopWatch(){
+		acumulados = new ArrayList<Long>();
 		startTime = 0;
 		finalTime = 0;
 	}
@@ -14,7 +18,8 @@ public class StopWatch {
 	}
 	
 	public void pause(){
-		finalTime += System.currentTimeMillis() - startTime;
+		long actual = System.currentTimeMillis() - startTime;
+		acumulados.add(actual);
 	}
 
 
@@ -22,7 +27,18 @@ public class StopWatch {
 		startTime = finalTime = 0;
 	}
 
-	public long getElapsedTime(){
-		return finalTime;
+	public double getPromedio(){
+		double x = 0.0;
+		for(Long l : acumulados)
+			x += l;
+		return x/acumulados.size();
+	}
+	
+	public double getDE(){
+		double de = 0.0;
+		double p = getPromedio();
+		for(Long l : acumulados)
+			de += Math.pow(p-l,2);
+		return Math.sqrt(de)/acumulados.size();
 	}
 }

@@ -6,7 +6,7 @@ public class vEBTree {
 	int size, min, max, sqrtU;
 	
 	public vEBTree(int U){
-		sqrtU = (int)Math.ceil(Math.sqrt(U));
+		sqrtU = (int)Math.floor(Math.sqrt(U));
 		top = new vEBTree(sqrtU);
 		bottom = new vEBTree[sqrtU];
 		for (int i=0; i<sqrtU;i++){
