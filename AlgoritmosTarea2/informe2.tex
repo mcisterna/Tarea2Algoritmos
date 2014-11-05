@@ -1,0 +1,406 @@
+
+\documentclass[letterpaper,12pt]{article}
+ 
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{graphicx}
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%% PORTADA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1pt\hfill \kern \z@}
+\renewcommand{\maketitle}{\begin{titlepage}%
+    \let\footnotesize\small
+    \let\footnoterule\relax
+    \parindent \z@
+    \reset@font
+    \null\vfil
+    \begin{flushleft}    
+      \small \@curso \par
+      \huge{\textbf{\@title}} \par
+    \end{flushleft}
+    \par
+    \hrule height 4pt
+    \par
+    \begin{flushright}
+      \Huge{\textbf{\@author}} \par
+      \bigskip
+      \normalsize{\@primerautor} \par
+      \normalsize{\@segundoautor} \par
+      \bigskip
+      \bigskip
+      \normalsize \@date \par
+    \end{flushright}
+    \vskip 60\p@
+    \vfil\null
+  \end{titlepage}%
+  \setcounter{footnote}{0}%
+}
+\def\primerautor#1{\def\@primerautor{#1}}
+\def\segundoautor#1{\def\@segundoautor{#1}}
+\def\curso#1{\def\@curso{#1}}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%% PORTADA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+ 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%% DATOS PERSONALES %%%%%%%%%%%%%%%%%%%%%%%
+\curso{CC4102 Dise\~no y An\'alisis de Algoritmos}
+\title{Informe Tarea II}
+ 
+\primerautor{Agust\'in L\'opez Q.}
+\segundoautor{Mat\'ias Cisterna M.}
+ 
+ 
+ 
+\begin{document}
+ 
+\maketitle
+ 
+ 
+\newpage
+\thispagestyle{empty}
+\tableofcontents
+\setcounter{page}{0}
+\newpage
+ 
+\section{Introducción}
+En esta tarea 2 de Diseño y Análisis de Algoritmos se busca analizar el desempeño de búsqueda en diferentes estructuras de datos. Las estructuras a analizar son las siguientes: Árbol Binario de Búsqueda, Árbol AVL, Árbol de Van Emde Boas, Splay Tree y Árbol Optimo.
+ 
+Un árbol binario de búsqueda (ABB) es una estructura de datos basada en nodos en forma de árbol. Es un árbol binario (solo puede haber hasta dos nodos hijos por padre), en el que todo a la izquierda del nodo padre es menor que el y todo a la derecha de el es mayor.
+
+Un árbol AVL, es un árbol que cumple las características de un árbol binario de búsqueda. Sin embargo este tiene la particularidad de auto balancearse. Esto quiere decir que que la altura de las ramas del lado izquierdo no difieren en mas de una unidad de altura de la derecha.
+
+Un árbol de Van Emde Boas (vEB tree), es una estructura de datos basada en arreglos asociativos en forma de árbol. En que todas sus operaciones son en el orden $(\log \left(\log M \right))$ siendo M el numero máximo de elementos que la estructura puede contener.
+
+Un Splay tree es un árbol con las mismas características que un árbol AVL y con la singularidad de que los elementos accesados recientemente tienen mejor tiempo de acceso que el resto. Esto se logra mediante haciendo \textit{splaying} al elemento del árbol. Esto consiste en reordenar el árbol para que ese elemento quede mas arriba, logrando así menores tiempos de acceso. 
+
+Un árbol de búsqueda optima es un árbol de búsqueda binaria. Con la excepción de que cuando se genera el árbol uno sabe de antemano cuales son las frecuencias de acceso de cada elemento. Con dicha información uno puede generar un árbol en que los elementos mas accesados estén antes, mejorando así los tiempos de acceso.
+
+~\\
+Características del Computador Usado:
+\begin{itemize}
+\item Cpu: Intel I7 x980 3.33Ghz
+\item Ram: 8gm ddr3 800Mhz
+\item Disco duro: Sata II
+\end{itemize}
+\newpage 
+\section{Hipótesis}
+Se cree que tanto \textit{ABB}, \textit{AVL Trees} y \textit{Splay Trees} se comportaran de manera similar en su tiempo promedio de búsqueda. Sin embargo, en estas tres estructuras se espera diferentes tiempos de búsqueda en su peor caso. Por otro lado, para \textit{Van Emde Boas tree} Su tiempo de búsqueda va a depender estrictamente de el tamaño M con que se cree el árbol. Aun así este árbol, a menos que $M>>>N$ (siendo n el numero de elementos), debería tener mejores tiempos de acceso que el resto de los mencionados anteriormente. Finalmente se espera que el \textit{Optimal Binary Search Tree} posea el menor tiempo de acceso de búsqueda de todos los arboles.
+
+\newpage
+\section{Dise\~no Experimental}
+\subsection{Implementaci\'on}
+Para la implementaci\'on se us\'o el lenguaje de programaci\'on Java. El dise\~no se dividi\'o en 9 clases:
+
+\begin{itemize}
+\item \textit{ABBTree}: Representa al árbol binario de búsqueda.
+\item \textit{AVLTree}: Representa al árbol AVL.
+\item \textit{AVLNode}: Representa los nodos del árbol AVL.
+\item \textit{IAVLNode}: Representa los nodos internos del árbol AVL.
+\item \textit{NullAVLNode}: Representa los nodos nullos del árbol AVL.
+\item \textit{SplayTree}: Representa al SplayTree.
+\item \textit{vEBTree}: Representa al árbol de Van Emde Boas.
+\item \textit{OpABBTree}:
+
+\item \textit{StopWatch}: Clase creada para medir tiempos de forma simple.
+\item \textit{Main}: Clase con m\'etodo \textit{main}, es desde donde se obtiene los datos.
+\end{itemize}
+
+
+Para la representación de cada estructura de datos: \textit{ABBTree}, \textit{AVLTree}, \textit{SplayTree}, \textit{vEBTree} y \textit{optimum ABBTree} se genero una clase que los representa. Dentro de cada clase se encuentra un método de inserción y búsqueda. Para las estructuras de datos Splay tree y AVL existen otros métodos que garantizan sus propiedades especificas de auto balanceo y nodos recién utilizados.
+
+\begin{itemize}
+\item B\'usqueda: Los algoritmos de búsqueda respectivamente para las 5 estructuras de datos reciben como parámetro un dato y retorna si se encuentra en la estructura o no y el tiempo que se demoro.
+
+\item Inserción: Los algoritmos de inserción dependen exclusivamente de la estructura en que se este ejecutando. Aun así todos reciben un nuevo dato a insertar y estos retornan la nueva estructura de datos con la nueva inserción.
+
+\begin{enumerate}
+  \item \textit{ABBTree}: El método de inserción es bastante simple el árbol inserta el nuevo dato en su posición correspondiente fijándose en cumplir que todo lo que este a su izquierda sea menor a el y a su derecha mayor a el. Esto se cumple para todo nodo en el árbol.
+  \item \textit{AVLTree}: El método de inserción cumple las mismas condiciones que el \textit{ABBTree} pero ademas este tiene que estar balanceado en su altura. Es decir la diferencia de altura de la rama mas larga con la rama mas corta es a lo mas una unidad.
+  \item \textit{SplayTree}: El método de inserción cumple las mismas condiciones que el \textit{AVLTree} pero ademas este reorganiza el elemento que tuvo el ultimo accesados para que así si se busca ese mismo elemento sea mas rápido.
+   \item \textit{vEBTree}: El método de inserción de esta estructura difiere al resto. Esto se debe a que el árbol esta concedido por arreglos y no por nodos. La inserción funciona de la siguiente manera: Si el arreglo esta vació los valores min y max son iguales al nuevo elemento. Si no, si $x<T.min$ entonces insertamos T.min al sub-árbol i responsable de T.min y T.min es ahora igual a x.Si no, si $x>T.max$ insertamos x en el sub-árbol i y T.max ahora es x. Finalmente si $T.min<x<T.max$ insertamos x en el sub-árbol i.
+   \item \textit{OpABBTree}:
+   
+\end{enumerate}
+\end{itemize}
+
+
+\subsection{Generaci\'on de Instancias}
+
+Se generan conjuntos de tamaños $ n \in$\{$2^{10},....2^{20}$\}. Ademas cada llave sera un numero natural que esta en el rango $ U = $\{$2^{10},....2^{20}$\}. Para cada $n$, se genera un conjunto al azar $K_n$ de $n$ llaves en el rango $U$. Finalmente se generan secuencias de tamaño $100n$ sobre estas llaves de tres maneras distintas al azar:
+\begin{itemize}
+
+\item \textbf{Distribución 1}: Se escogen $100n$ números al azar entre el conjunto de llaves $K_n$.
+
+\item \textbf{Distribución 2}: Se escoge que la $i$-esima llave aparece con probabilidad $c/i^a$, donde $c$ es una constante de normalización. $ a \in$\{1.2,1.5,2.0\}.
+
+\item \textbf{Distribución 3}: Se escoge que la $i$-esima llave aparece con probabilidad $c/a^i$, donde $c$ es una constante de normalización. $ a \in$\{1.2,1.5,2.0\}.
+
+Finalmente el bloque de código de la creación de las 3 distribuciones queda así:
+
+\lstset{language=Java, breaklines=true, basicstyle=\footnotesize}
+\begin{lstlisting}[frame=single, numbersep=5pt, numbers=left, tabsize=3] 
+for(int n=1024;n <= 1024*1024; n*=2)
+{
+	potencia = (int)(Math.log(n)/Math.log(2));
+	Kn = new int[n];
+	seq1 = new int[100*n];
+	seq2 = new int[3][100*n];
+	seq3 = new int[3][100*n];
+	freq1 = new double[100*n];
+	freq2 = new double[3][100*n];
+	freq3 = new double[3][100*n];
+	for (int i = 0; i < n; i++) 
+	{
+		Kn[i] = r.nextInt(U) + 1;
+	}
+	// secuencia 1
+	for (int i = 0; i < 100*n; i++) 
+	{
+		seq1[i] = Kn[r.nextInt(n)];
+		freq1[i] = 1.0/(100*n);
+	}
+	// secuencia 2 
+	int i = 0;
+	int k = 0;
+	for(int index=0;index<3;index++)
+	{
+		double c = getC2(a[index],n);
+		while(i <= 100*n)
+		{				
+			double freq_k = c/Math.pow(k+1,a[index]); // frecuencia de Kn[k]
+			int cant_k = (int)Math.ceil(100*n*freq_k); // cantidad de Kn[k]
+			for(int j=i;j<(100*n) && j<(i+cant_k);j++)
+			{
+				seq2[index][j] = Kn[k];
+				freq2[index][j] = freq_k;
+			}
+			k++;
+			i += cant_k;
+		}			
+	// 	secuencia 3 
+		i = 0;
+		k = 0;
+		c = getC3(a[index],n);
+		while(i <= 100*n)
+		{
+			double freq_k = c/Math.pow(a[index],k+1); // frecuencia de Kn[k]
+			int cant_k = (int)Math.ceil(100*n*freq_k); // cantidad de Kn[k]
+			for(int j=i;j<(100*n) && j<(i+cant_k);j++)
+			{
+				seq3[index][j] = Kn[k];
+				freq3[index][j] = freq_k;
+			}
+			k++;
+			i += cant_k;
+		}
+	}
+}	
+\end{lstlisting}
+
+\end{itemize}
+
+
+
+\subsection{Medidas de Rendimiento}
+Las medidas de rendimiento usadas son dos en base al tiempo:
+\begin{itemize}
+
+\item Primero es el tiempo de demora en la construcción de cada estructura en cuestión.
+	
+\item Segundo es el tiempo de demora en la búsqueda de un elemento en cada estructura.
+
+\end{itemize}
+
+Finalmente estas medidas, tanto de búsqueda como de inserción, son almacenadas en un nuevo archivo. Creado con el objetivo de almacenar los datos y luego analizarlos.
+
+\newpage
+\section{Presentación de Resultados}
+
+\subsection{Datos Reales}
+
+\subsubsection{Inserciones}
+A continuación se presentan los resultados obtenidos según la distribución de creación de datos usada.
+\begin{itemize}
+
+\item Distribucion 1:
+
+\end{itemize}
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{$n$} & \textbf{Tipo Árbol} & \textbf{Tiempo Promedio Construcción (milisegundos)} \\
+\hline
+10482 & 30296 & 191 \\
+\hline
+\end{tabular}
+\\ \\
+
+A continuación se presenta en una tabla los resultados del experimento de inserci\'on de rect\'angulos generados de datos reales en un R-Tree con el m\'etodo de \textit{LinearSplit}: \\
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Tama\~no} & \textbf{Cantidad I/O's} & \textbf{Tiempo (milisegundos)} \\
+\hline
+10482 & 30058 & 58 \\
+\hline
+\end{tabular}
+\\ \\
+
+\subsubsection{Búsqueda}
+A continuaci\'on se presenta en una tabla los resultados del experimento de búsqueda de rect\'angulos generados de datos reales en un R-Tree en el arbol generado con el m\'etodo de \textit{QuadraticSplit}: \\
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Tama\~no} & \textbf{Cantidad promedio de I/O's} & \textbf{Tiempo promedio (milisegundos)} \\
+\hline
+10482 & 0.011450381679389313 & 0.004770992366412214 \\
+\hline
+\end{tabular}
+\\ \\
+
+A continuaci\'on se presenta en una tabla los resultados del experimento de búsqueda de rect\'angulos generados de datos reales en un R-Tree en el arbol generado con el m\'etodo de \textit{LinearSplit}: \\
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Tama\~no} & \textbf{Cantidad promedio de I/O's} & \textbf{Tiempo promedio (milisegundos)} \\
+\hline
+10482 & 0.0 & 0.004770992366412214 \\
+\hline
+\end{tabular}
+\\ \\
+
+\subsection{Datos Generados}
+\subsubsection{Inserciones}
+A continuación se presenta en una tabla los resultados del experimento de inserción de rectángulos aleatorios en un R-Tree con el método de \textit{QuadraticSplit}: \\
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Tama\~no ($2^n$)} & \textbf{Cantidad I/O's} & \textbf{Tiempo (milisegundos)} \\
+\hline
+9 & 755 & 43 \\
+\hline
+12 & 10656 & 115 \\
+\hline
+15 & 118832 & 1043 \\
+\hline
+18 & 1193602 & 9624 \\
+\hline
+21 & 11553820 & 84628 \\
+\hline
+24 & 141142799 & 476308 \\
+\hline
+\end{tabular}
+\\ \\
+Los gr\'aficos de ambos datos, en escala logar\'itmica para su mejor visualizaci\'on se encuentran en la Figura~\ref{fig:f1} y ~\ref{fig:f2}.
+
+Ahora se presenta en una tabla los resultados del experimento de inserción de rectángulos aleatorios en un R-Tree con el método de \textit{LinearSplit}: \\
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Tama\~no ($2^n$)} & \textbf{Cantidad I/O's} & \textbf{Tiempo (milisegundos)} \\
+\hline
+9 & 740 & 23 \\
+\hline
+12 & 10471 & 36 \\
+\hline
+15 & 113245 & 451 \\
+\hline
+18 & 1192441 & 4683 \\
+\hline
+21 & 11118402 & 46764 \\
+\hline
+24 & 136824746 & 252177 \\
+\hline
+\end{tabular}
+
+Los gr\'aficos de ambos datos, en escala logar\'itmica para su mejor visualizaci\'on se encuentran en la Figura~\ref{fig:f3} y ~\ref{fig:f4}.
+
+\subsubsection{Búsqueda}
+A continuación se presenta en una tabla los resultados del experimento de busqueda de rectángulos aleatorios en un R-Tree con el método de inserción \textit{QuadraticSplit}: \\
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Tama\~no ($2^n$)} & \textbf{Cantidad promedio de I/O's} & \textbf{Tiempo promedio (milisegundos)} \\
+\hline
+9 & 0.0 & 0.0 \\
+\hline
+12 & 0.0 & 0.0 \\
+\hline
+15 & 0.0 & 0.0 \\
+\hline
+18 & 0.0 & 7.629510948348211E-5 \\
+\hline
+21 & 0.0 & 3.337863290656367E-5 \\
+\hline
+24 & 0.0 & 2.384186643667213E-5 \\
+\hline
+\end{tabular}
+\\ \\
+
+A continuación se presenta en una tabla los resultados del experimento de busqueda de rectángulos aleatorios en un R-Tree con el método de inserción \textit{LinearSplit}: \\
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Tama\~no ($2^n$)} & \textbf{Cantidad promedio de I/O's} & \textbf{Tiempo promedio (milisegundos)} \\
+\hline
+9 & 0.0 & 0.0 \\
+\hline
+12 & 0.0 & 0.0024449877750611247 \\
+\hline
+15 & 0.0 & 9.157509157509158E-4 \\
+\hline
+18 & 0.0 & 1.1444266422522316E-4 \\
+\hline
+21 & 0.0 & 4.291538516558186E-5 \\
+\hline
+24 & 0.0 & 2.7418146402172948E-5 \\
+\hline
+\end{tabular}
+\\ \\
+
+
+
+
+\newpage
+\subsection{Gráficos}
+\iffalse
+\begin{figure}[bp!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{quadratic_io}
+  \caption{Gr\'afico Tama\~no vs I/O's para QuadraticSplit}
+  \label{fig:f1}
+\end{figure}
+
+\begin{figure}[bp!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{quadratic_tiempo}
+  \caption{Gr\'afico Tama\~no vs Tiempo para QuadraticSplit}
+  \label{fig:f2}
+\end{figure}
+
+\begin{figure}[bp!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{linear_io}
+  \caption{Gr\'afico Tama\~no vs I/O's para LinearSplit}
+  \label{fig:f3}
+\end{figure}
+
+\begin{figure}[bp!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{linear_tiempo}
+  \caption{Gr\'afico Tama\~no vs Tiempo para LinearSplit}
+  \label{fig:f4}
+\end{figure}
+\fi
+\newpage
+\section{An\'alisis e Interpretaci\'on de Datos}
+ \subsection{Inserciones}
+ 
+Podemos ver que para el caso de datos generados la cantidad de I/O's y el tiempo a medida que crece $n$, es lineal para ambos casos de inserción(\textit{LinearSplit} y \textit{QuadraticSplit}). Sin embargo, podemos notar que para el caso de \textit{LinearSplit} este toma casi la mitdad del tiempo que \textit{QuadraticSplit}. Ademas \textit{LinearSplit} hace ligeramente menos I/O's que \textit{QuadraticSplit}.
+
+Por otro lado, en el caso en que los rectángulos son generados a partir de datos reales. Vemos que nuevamente el tiempo de inserción para el método \textit{LinearSplit} toma bastante menos tiempo que textit{QuadraticSplit}. Sin embargo, en la cantidad de I/O's ambos algoritmos se comportan relativamente similar.
+
+Dado la naturaleza de ambos algoritmos de inserción es fácil ver que para el caso de \textit{LinearSplit} este iba a lograr menores tiempos de inserción en comparación a \textit{QuadraticSplit}. Esto se debe a que la naturaleza de su algoritmo hace generar arboles mas irregulares. Es decir, genera arboles menos balanceados que \textit{QuadraticSplit}. Esto se debe a que las estrategias de \textit{LinearSplit} son mas laxas. Sin embargo, esto puede producir que al momento de realizar operaciones sobre un árbol generado por \textit{LinearSplit} esta tome mas tiempo que en \textit{QuadraticSplit}.
+
+ 
+\subsection{Búsqueda}
+Lamentablemente después de analizar ambos casos, Datos reales y generados. Se puede concluir que el método de búsqueda posee algún error. Se cree que este no estaba cargando los datos de disco por lo tanto al leerlos de memoria primaria arroja los datos adjuntos. Que son de costo prácticamente cero para ambos casos, que es de esperarse si los datos son leídos de memoria primaria.  
+
+Por otro lado se esperaba que \textit{QuadraticSplit} tuviese mejores tiempos y menores I/O's que \textit{LinearSplit}.
+ 
+\end{document}

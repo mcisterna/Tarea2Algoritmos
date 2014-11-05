@@ -177,10 +177,10 @@ public class Main {
 			for (int j = 0; j < 5; j++)
 				w_seq1.println(
 						potencia+" \t "+names[j]+" \t "+
-						construction_seq1[0][j]/(100.0*n)+
-						" \t "+construction_seq1[1][j]/(100.0*n)+
-						" \t "+search_seq1[0][j]/(100.0*n)+
-						" \t "+search_seq1[1][j]/(100.0*n));
+						construction_seq1[0][j]+
+						" \t "+construction_seq1[1][j]+
+						" \t "+search_seq1[0][j]+
+						" \t "+search_seq1[1][j]);
 			
 			for (int index=0; index<3; index++){
 			
@@ -256,10 +256,10 @@ public class Main {
 			for (int j = 0; j < 5; j++)
 				w_seq2[index].println(
 						potencia+" \t "+names[j]+" \t "+
-						construction_seq2[0][index][j]/(100.0*n)+
-						" \t "+construction_seq2[1][index][j]/(100.0*n)+
-						" \t "+search_seq2[0][index][j]/(100.0*n)+
-						" \t "+search_seq2[1][index][j]/(100.0*n));
+						construction_seq2[0][index][j]+
+						" \t "+construction_seq2[1][index][j]+
+						" \t "+search_seq2[0][index][j]+
+						" \t "+search_seq2[1][index][j]);
 			
 			// resetear arboles para nuevas secuencias 
 			abbtree = new ABBTree();
@@ -333,10 +333,10 @@ public class Main {
 			for (int j = 0; j < 5; j++)
 				w_seq3[index].println(
 						potencia+" \t "+names[j]+" \t "+
-						construction_seq3[0][index][j]/(100.0*n)+
-						" \t "+construction_seq3[1][index][j]/(100.0*n)+
-						" \t "+search_seq3[0][index][j]/(100.0*n)+
-						" \t "+search_seq3[1][index][j]/(100.0*n));
+						construction_seq3[0][index][j]+
+						" \t "+construction_seq3[1][index][j]+
+						" \t "+search_seq3[0][index][j]+
+						" \t "+search_seq3[1][index][j]);
 			}
 			
 			
