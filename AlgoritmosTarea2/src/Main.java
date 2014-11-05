@@ -45,16 +45,32 @@ public class Main {
 		a[0] = 1.2;
 		a[1] = 1.5;
 		a[2] = 2.0;
+		int potencia;
+		
+		StopWatch watches[] = new StopWatch[5];
+		
+		for (int j = 0; j < 5; j++)
+			watches[j] = new StopWatch();
+		
+		// resultados: se muestran en cada arreglo en el siguiente orden:
+		// ABB, AVL, vEB, SplayTree, Arbol Optimo
+		double construction_seq1[][] = new double[2][5];
+		double construction_seq2[][][] = new double[2][3][5];
+		double construction_seq3[][][] = new double[2][3][5];
+					
+		double search_seq1[][] = new double[2][5];
+		double search_seq2[][][] = new double[2][3][5];
+		double search_seq3[][][] = new double[2][3][5];
 		
 		for(int n=1024;n <= 1024*1024; n*=2){
-			int potencia = (int)(Math.log(n)/Math.log(2));
+			potencia = (int)(Math.log(n)/Math.log(2));
 			Kn = new int[n];
 			seq1 = new int[100*n];
 			seq2 = new int[3][100*n];
 			seq3 = new int[3][100*n];
-			freq1 = new double[100*n];
-			freq2 = new double[3][100*n];
-			freq3 = new double[3][100*n];
+			//freq1 = new double[100*n];
+			//freq2 = new double[3][100*n];
+			//freq3 = new double[3][100*n];
 			for (int i = 0; i < n; i++) {
 				Kn[i] = r.nextInt(U) + 1;
 			}
@@ -62,7 +78,7 @@ public class Main {
 			// secuencia 1
 			for (int i = 0; i < 100*n; i++) {
 				seq1[i] = Kn[r.nextInt(n)];
-				freq1[i] = 1.0/(100*n);
+				//freq1[i] = 1.0/(100*n);
 			}
 			
 			// secuencia 2 
@@ -75,7 +91,7 @@ public class Main {
 					int cant_k = (int)Math.ceil(100*n*freq_k); // cantidad de Kn[k]
 					for(int j=i;j<(100*n) && j<(i+cant_k);j++){
 						seq2[index][j] = Kn[k];
-						freq2[index][j] = freq_k;
+						//freq2[index][j] = freq_k;
 					}
 					k++;
 					i += cant_k;
@@ -89,27 +105,12 @@ public class Main {
 					int cant_k = (int)Math.ceil(100*n*freq_k); // cantidad de Kn[k]
 					for(int j=i;j<(100*n) && j<(i+cant_k);j++){
 						seq3[index][j] = Kn[k];
-						freq3[index][j] = freq_k;
+						//freq3[index][j] = freq_k;
 					}
 					k++;
 					i += cant_k;
 				}
 			}
-			
-			// resultados: se muestran en cada arreglo en el siguiente orden:
-			// ABB, AVL, vEB, SplayTree, Arbol Optimo
-			double construction_seq1[][] = new double[2][5];
-			double construction_seq2[][][] = new double[2][3][5];
-			double construction_seq3[][][] = new double[2][3][5];
-			
-			double search_seq1[][] = new double[2][5];
-			double search_seq2[][][] = new double[2][3][5];
-			double search_seq3[][][] = new double[2][3][5];
-			
-			StopWatch watches[] = new StopWatch[5];
-			
-			for (int j = 0; j < 5; j++)
-				watches[j] = new StopWatch();
 			
 			for (int l = 0; l < 100*n; l++){
 				
@@ -263,7 +264,7 @@ public class Main {
 			// resetear arboles para nuevas secuencias 
 			abbtree = new ABBTree();
 			avltree = new AVLTree();
-			//vebtree = new vEBTree(U);
+			vebtree = new vEBTree(U);
 			splaytree = new SplayTree();
 			
 			for (int l = 0; l < 100*n; l++) {
