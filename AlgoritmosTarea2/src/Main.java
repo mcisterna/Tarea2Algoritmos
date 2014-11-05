@@ -1,6 +1,4 @@
-import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.Random;
 
 
@@ -40,7 +38,7 @@ public class Main {
 		names[4] = "Arbol Optimo";
 		ABBTree abbtree = new ABBTree();
 		AVLTree avltree = new AVLTree();
-		//vEBTree vebtree = new vEBTree(U);
+		vEBTree vebtree = new vEBTree(U);
 		SplayTree splaytree = new SplayTree();
 		
 		double[] a = new double[3];
@@ -113,7 +111,7 @@ public class Main {
 			for (int j = 0; j < 5; j++)
 				watches[j] = new StopWatch();
 			
-			for (int l = 0; l < 100*n; l++) {
+			for (int l = 0; l < 100*n; l++){
 				
 				//construccion abb seq1
 				watches[0].start();
@@ -127,7 +125,7 @@ public class Main {
 				
 				//construccion vEB seq1
 				watches[2].start();
-				//vebtree.insert(seq1[l]);
+				vebtree.insert(seq1[l]);
 				watches[2].pause();
 				
 				//construccion splaytree seq1
@@ -158,7 +156,7 @@ public class Main {
 				
 				//busqueda vEB seq1
 				watches[2].start();
-				//vebtree.findNext(seq1[l]);
+				vebtree.findNext(seq1[l]);
 				watches[2].pause();
 				
 				//busqueda splaytree seq1
@@ -188,7 +186,7 @@ public class Main {
 			// resetear arboles para nuevas secuencias 
 			abbtree = new ABBTree();
 			avltree = new AVLTree();
-			//vebtree = new vEBTree(U);
+			vebtree = new vEBTree(U);
 			splaytree = new SplayTree();
 			
 			for (int l = 0; l < 100*n; l++) {
@@ -205,7 +203,7 @@ public class Main {
 				
 				//construccion vEB seq2
 				watches[2].start();
-				//vebtree.insert(seq2[index][l]);
+				vebtree.insert(seq2[index][l]);
 				watches[2].pause();
 				
 				//construccion splaytree seq2
@@ -236,7 +234,7 @@ public class Main {
 				
 				//busqueda vEB seq2
 				watches[2].start();
-				//vebtree.findNext(seq2[index][l]);
+				vebtree.findNext(seq2[index][l]);
 				watches[2].pause();
 				
 				//busqueda splaytree seq2
@@ -282,7 +280,7 @@ public class Main {
 				
 				//construccion vEB seq3
 				watches[2].start();
-				//vebtree.insert(seq3[index][l]);
+				vebtree.insert(seq3[index][l]);
 				watches[2].pause();
 				
 				//construccion splaytree seq3
@@ -313,7 +311,7 @@ public class Main {
 				
 				//busqueda vEB seq3
 				watches[2].start();
-				//vebtree.findNext(seq3[index][l]);
+				vebtree.findNext(seq3[index][l]);
 				watches[2].pause();
 				
 				//busqueda splaytree seq3
