@@ -25,6 +25,8 @@ public class StopWatch {
 
 	public void reset(){
 		startTime = finalTime = 0;
+		acumulados.clear();
+		
 	}
 
 	public double getPromedio(){
