@@ -1,4 +1,4 @@
-
+\author{Agustín López, Matías Cisterna }
 \documentclass[letterpaper,12pt]{article}
  
 \usepackage[spanish]{babel}
@@ -87,6 +87,9 @@ Características del Computador Usado:
 \end{itemize}
 \newpage 
 \section{Hipótesis}
+
+Se espera que para los tiempos de construcción, la estructura \textit{Van Emde Boas tree} sea la que se demore mas al ir aumentando el tamaño de los datos. Entre las estructuras restantes, \textit{ABB}, \textit{AVL Trees} y \textit{Splay Trees}. Se espera que posean un comportamiento similar en el tiempo de construcción con ciertos matices \textit{AVL Trees} y \textit{Splay Trees} debido a que ellos tienen que cumplir con ciertas reglas al momento de ir construyendo sus estructuras.
+
 Se cree que tanto \textit{ABB}, \textit{AVL Trees} y \textit{Splay Trees} se comportaran de manera similar en su tiempo promedio de búsqueda. Sin embargo, en estas tres estructuras se espera diferentes tiempos de búsqueda en su peor caso. Por otro lado, para \textit{Van Emde Boas tree} Su tiempo de búsqueda va a depender estrictamente de el tamaño M con que se cree el árbol. Aun así este árbol, a menos que $M>>>N$ (siendo n el numero de elementos), debería tener mejores tiempos de acceso que el resto de los mencionados anteriormente. Finalmente se espera que el \textit{Optimal Binary Search Tree} posea el menor tiempo de acceso de búsqueda de todos los arboles.
 
 \newpage
@@ -1010,14 +1013,14 @@ A continuación se presentan los resultados obtenidos según la distribución de
 
 \newpage
 \subsection{Gráficos}
-Ahora se presentan gr\'aficos donde se muestra performance de ABBTree (azul), AVLTree (rojo) y SplayTree (amarillo), tanto para inserci\'on como para b\'usqueda. En las figuras ~\ref{fig:f1} y ~\ref{fig:f2} se muestra para la secuencia $1$, en las figuras ~\ref{fig:f3} y ~\ref{fig:f4} se muestra para la secuencia $2$ con $a=1.5$ y en las figuras ~\ref{fig:f5} y ~\ref{fig:f6} se muestran para la secuencia $3$ con $a=2.0$ (se han gráficado tiempo versus logaritmo del tamaño de la entrada).
+Ahora se presentan gr\'aficos donde se muestra el desempeño de ABBTree (azul), AVLTree (rojo) y SplayTree (amarillo), tanto para inserci\'on como para b\'usqueda. En las figuras ~\ref{fig:f1} y ~\ref{fig:f2} se muestra para la secuencia $1$, en las figuras ~\ref{fig:f3} y ~\ref{fig:f4} se muestra para la secuencia $2$ con $a=1.5$ y en las figuras ~\ref{fig:f5} y ~\ref{fig:f6} se muestran para la secuencia $3$ con $a=2.0$ (se han gráficado tiempo versus logaritmo del tamaño de la entrada).
 
 
 \iftrue
 \begin{figure}[bp!]
   \centering
     \includegraphics[width=0.8\textwidth]{freq1_ins}
-  \caption{Tiempo inserci\'on para secuencia 1}
+  \caption{Tiempo construcción para secuencia 1}
   \label{fig:f1}
 \end{figure}
 
@@ -1031,7 +1034,7 @@ Ahora se presentan gr\'aficos donde se muestra performance de ABBTree (azul), AV
 \begin{figure}[bp!]
   \centering
     \includegraphics[width=0.8\textwidth]{freq215_ins}
-  \caption{Tiempo inserci\'on para secuencia 2 y $a=1.5$}
+  \caption{Tiempo construcción para secuencia 2 y $a=1.5$}
   \label{fig:f3}
 \end{figure}
 
@@ -1045,7 +1048,7 @@ Ahora se presentan gr\'aficos donde se muestra performance de ABBTree (azul), AV
 \begin{figure}[bp!]
   \centering
     \includegraphics[width=0.8\textwidth]{freq320_ins}
-  \caption{Tiempo inserci\'on para secuencia 2 y$a=2.0$}
+  \caption{Tiempo construcción para secuencia 2 y$a=2.0$}
   \label{fig:f5}
 \end{figure}
 
@@ -1058,18 +1061,22 @@ Ahora se presentan gr\'aficos donde se muestra performance de ABBTree (azul), AV
 \fi
 \newpage
 \section{An\'alisis e Interpretaci\'on de Datos}
- \subsection{Inserciones}
+ \subsection{Construcción}
+
+Se puede ver que para el caso de los dato generados al azar, es decir, la distribución 1. La estructura que se comporta mejor (menor tiempo) es \textit{SplayTrees} a medida que $n$ crece. El resto de las estructuras, a medida que crece el $n$ estas aumentan su tiempo de construcción. Sin embargo para el resto de las distribuciones 2 y 3. Se puede ver que el tiempo de creación no varia de forma importante en todas las estructuras. La variación de tiempo es del orden de  $\sim 1.2\times10^4$ entre estructuras. 
  
-Podemos ver que para el caso de datos generados la cantidad de I/O's y el tiempo a medida que crece $n$, es lineal para ambos casos de inserción(\textit{LinearSplit} y \textit{QuadraticSplit}). Sin embargo, podemos notar que para el caso de \textit{LinearSplit} este toma casi la mitdad del tiempo que \textit{QuadraticSplit}. Ademas \textit{LinearSplit} hace ligeramente menos I/O's que \textit{QuadraticSplit}.
-
-Por otro lado, en el caso en que los rectángulos son generados a partir de datos reales. Vemos que nuevamente el tiempo de inserción para el método \textit{LinearSplit} toma bastante menos tiempo que textit{QuadraticSplit}. Sin embargo, en la cantidad de I/O's ambos algoritmos se comportan relativamente similar.
-
-Dado la naturaleza de ambos algoritmos de inserción es fácil ver que para el caso de \textit{LinearSplit} este iba a lograr menores tiempos de inserción en comparación a \textit{QuadraticSplit}. Esto se debe a que la naturaleza de su algoritmo hace generar arboles mas irregulares. Es decir, genera arboles menos balanceados que \textit{QuadraticSplit}. Esto se debe a que las estrategias de \textit{LinearSplit} son mas laxas. Sin embargo, esto puede producir que al momento de realizar operaciones sobre un árbol generado por \textit{LinearSplit} esta tome mas tiempo que en \textit{QuadraticSplit}.
+ 
 
  
 \subsection{Búsqueda}
-Lamentablemente después de analizar ambos casos, Datos reales y generados. Se puede concluir que el método de búsqueda posee algún error. Se cree que este no estaba cargando los datos de disco por lo tanto al leerlos de memoria primaria arroja los datos adjuntos. Que son de costo prácticamente cero para ambos casos, que es de esperarse si los datos son leídos de memoria primaria.  
 
-Por otro lado se esperaba que \textit{QuadraticSplit} tuviese mejores tiempos y menores I/O's que \textit{LinearSplit}.
+Para el caso de la búsqueda en las distintas estructuras nuevamente se ve que para la distribución 1 existe una diferencia mayor entre los algoritmos. Siendo nuevamente \textit{SplayTrees} la con menor tiempo al aumentar $n$. 
+Cabe destacar que ahora para la distribucion 2 tambien existe una diferencia considerable entre los algorimos y nuevamente \textit{SplayTrees} es la que busca con menor tiempo promedio al aumentar $n$. 
  
+\subsection{Conclusiones} 
+Se quiere destacar ciertos puntos importantes al minuto de generar y implementar el experimento. En que se analizo el tiempo de creación y búsqueda en distintas estructuras de datos.
+Primero que nada todos los datos fueron trabajados en memoria primaria. Por lo tanto el costo promedio de acceso a ella por cada estructura es de $O(c)$ con $c$ cierta constante. Es decir, el acceso se hace en tiempo constante.
+
+Ademas se hizo una comparación con distintos PC's y el tiempo de creación para $n$ chicos ( no mayores a $2^12$) variaba considerablemente. Sin embargo no se pudo correr en otros PC's el programa completo debido a la limitante de memoria RAM de estos. Es por ello que se cree los datos obtenidos y su sorprendente bajo tiempo de construcción de las estructuras se debe a que el PC's usado posee un procesador I7 con 12 núcleos virtuales a 3.33Ghz. Lo que genera que los datos sean procesados sorprendenmente rápidos.  
+
 \end{document}
