@@ -62,7 +62,7 @@ public class Main {
 		double search_seq2[][][] = new double[2][3][5];
 		double search_seq3[][][] = new double[2][3][5];
 		
-		for(int n=1024;n <= 1024*1024; n*=2){
+		for(int n=1024;n <= 1024*2; n*=2){
 			potencia = (int)(Math.log(n)/Math.log(2));
 			Kn = new int[n];
 			seq1 = new int[100*n];

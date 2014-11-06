@@ -81,8 +81,9 @@ Un árbol de búsqueda optima es un árbol de búsqueda binaria. Con la excepci�
 Características del Computador Usado:
 \begin{itemize}
 \item Cpu: Intel I7 x980 3.33Ghz
-\item Ram: 8gm ddr3 800Mhz
+\item Ram: 8Gb ddr3 800Mhz
 \item Disco duro: Sata II
+\item Memoria JVM: 8Gb
 \end{itemize}
 \newpage 
 \section{Hipótesis}
@@ -218,21 +219,341 @@ Finalmente estas medidas, tanto de búsqueda como de inserción, son almacenadas
 \newpage
 \section{Presentación de Resultados}
 
-\subsection{Datos Reales}
-
-\subsubsection{Inserciones}
+\subsection{Datos}
 A continuación se presentan los resultados obtenidos según la distribución de creación de datos usada.
-\begin{itemize}
 
-\item Distribucion 1:
-
-\end{itemize}
+\subsubsection{Distribución 1}
 
 \begin{tabular}{|c|c|c|c|c|}
 \hline
-\textbf{$n$} & \textbf{Tipo Árbol} & \textbf{Tiempo Promedio Construcción (milisegundos)} \\
+\textbf{$n$} & \textbf{Tipo Árbol} & \textbf{T/P Construcción (ms)} & \textbf{T/P Búsqueda (ms)} \\
 \hline
-10482 & 30296 & 191 \\
+10 & ABBTree & 1.5625E-4 & 1.46484375E-4 \\
+\hline
+10 & AVLTree & 1.46484375E-4 & 1.5625E-4 \\
+\hline
+10 & vEBTree & 3.125E-4 & 0.0\\
+\hline
+10 & SplayTree & 1.46484375E-4 & 0.0 \\
+\hline
+\hline
+11 & ABBTree & 1.5625E-4 & 8.30078125E-5 \\
+\hline
+11 & AVLTree & 4.58984375E-4 & 1.46484375E-4 \\
+\hline
+11 & vEBTree & 1.46484375E-4 & 1.513671875E-4\\
+\hline
+11 & SplayTree & 2.24609375E-4 & 3.857421875E-4 \\
+\hline
+\hline
+12 & ABBTree & 2.24609375E-4 & 1.4892578125E-4  \\
+\hline
+12 & AVLTree & 2.685546875E-4 & 0.0 \\
+\hline
+12 & vEBTree & 1.5869140625E-4 & 7.568359375E-5\\
+\hline
+12 & SplayTree & 2.34375E-44 & 2.685546875E-4 \\
+\hline
+\hline
+13 & ABBTree & 9.521484375E-5 & 2.6611328125E-4  \\
+\hline
+13 & AVLTree & 2.69775390625E-4 & 1.953125E-5 \\
+\hline
+13 & vEBTree & 2.099609375E-4 & 9.765625E-5\\
+\hline
+13 & SplayTree & 2.25830078125E-4 & 1.8798828125E-4 \\
+\hline
+\hline
+14 & ABBTree & 2.264404296875E-4 & 1.812744140625E-4 \\
+\hline
+14 & AVLTree & 2.484130859375E-4 & 3.84521484375E-5 \\
+\hline
+14 & vEBTree & 2.55126953125E-4 & 1.727294921875E-4\\
+\hline
+14 & SplayTree & 3.253173828125E-4 & 2.764892578125E-4 \\
+\hline
+\hline
+15 & ABBTree & 2.960205078125E-4 & 2.4169921875E-4 \\
+\hline
+15 & AVLTree & 3.1005859375E-4 & 7.2021484375E-5 \\
+\hline
+15 & vEBTree & 2.801513671875E-4  & 1.3946533203125E-4\\
+\hline
+15 & SplayTree & 4.5440673828125E-4 & 3.8604736328125E-4 \\
+\hline
+\end{tabular}
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{$n$} & \textbf{Tipo Árbol} & \textbf{T/P Construcción (ms)} & \textbf{T/P Búsqueda (ms)} \\
+\hline
+16 & ABBTree & 3.399658203125E-4 & 2.117919921875E-4 \\
+\hline
+16 & AVLTree & 4.083251953125E-4  & 3.5858154296875E-5 \\
+\hline
+16 & vEBTree & 2.960205078125E-4  & 1.57318115234375E-4 \\
+\hline
+16 & SplayTree & 4.9835205078125E-4 & 3.07464599609375E-4 \\
+\hline
+\hline
+17 & ABBTree & 5.389404296875E-4  & 4.659271240234375E-4 \\
+\hline
+17 & AVLTree & 4.743194580078125E-4 & 6.32476806640625E-5 \\
+\hline
+17 & vEBTree & 3.643798828125E-4  & 1.975250244140625E-4\\
+\hline
+17 & SplayTree & 8.055877685546875E-4 & 7.17010498046875E-4 \\
+\hline
+\hline
+18 & ABBTree & 4.204559326171875E-4 & 3.5675048828125E-4 \\
+\hline
+18 & AVLTree & 5.981063842773437E-4 & 3.39508056640625E-5 \\
+\hline
+18 & vEBTree & 3.4027099609375E-4 & 2.185821533203125E-4 \\
+\hline
+18 & SplayTree & 7.726669311523438E-4  & 6.854248046875E-4 \\
+\hline
+\hline
+19 & ABBTree & 5.132865905761719E-4 & 4.1212081909179686E-4 \\
+\hline
+19 & AVLTree & 7.082176208496094E-4  & 3.652572631835937E-5 \\
+\hline
+19 & vEBTree & 3.523445129394531E-4 & 2.6578903198242186E-4\\
+\hline
+19 & SplayTree & 9.218597412109375E-4 & 7.559776306152344E-4 \\
+\hline
+\hline
+20 & ABBTree & 5.592250823974609E-4 & 4.915428161621093E-4 \\
+\hline
+20 & AVLTree & 7.883644104003906E-4 & 8.368492126464844E-5 \\
+\hline
+20 & vEBTree & 3.510951995849609E-4 & 2.821636199951172E-4\\
+\hline
+20 & SplayTree & 9.749412536621093E-4 & 8.31613540649414E-4 \\
+\hline
+\end{tabular}
+\\ \\
+
+\subsubsection{Distribución 2 ($a=1.2$)}
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{$n$} & \textbf{Tipo Árbol} & \textbf{T/P Construcción (ms)} & \textbf{T/P Búsqueda (ms)} \\
+\hline
+10 & ABBTree & 1.5625E-4 & 1.46484375E-4 \\
+\hline
+10 & AVLTree & 1.46484375E-4 & 1.5625E-4 \\
+\hline
+10 & vEBTree & 3.125E-4 & 0.0\\
+\hline
+10 & SplayTree & 1.46484375E-4 & 0.0 \\
+\hline
+\hline
+11 & ABBTree & 1.5625E-4 & 8.30078125E-5 \\
+\hline
+11 & AVLTree & 4.58984375E-4 & 1.46484375E-4 \\
+\hline
+11 & vEBTree & 1.46484375E-4 & 1.513671875E-4\\
+\hline
+11 & SplayTree & 2.24609375E-4 & 3.857421875E-4 \\
+\hline
+\hline
+12 & ABBTree & 2.24609375E-4 & 1.4892578125E-4  \\
+\hline
+12 & AVLTree & 2.685546875E-4 & 0.0 \\
+\hline
+12 & vEBTree & 1.5869140625E-4 & 7.568359375E-5\\
+\hline
+12 & SplayTree & 2.34375E-44 & 2.685546875E-4 \\
+\hline
+\hline
+13 & ABBTree & 9.521484375E-5 & 2.6611328125E-4  \\
+\hline
+13 & AVLTree & 2.69775390625E-4 & 1.953125E-5 \\
+\hline
+13 & vEBTree & 2.099609375E-4 & 9.765625E-5\\
+\hline
+13 & SplayTree & 2.25830078125E-4 & 1.8798828125E-4 \\
+\hline
+\hline
+14 & ABBTree & 2.264404296875E-4 & 1.812744140625E-4 \\
+\hline
+14 & AVLTree & 2.484130859375E-4 & 3.84521484375E-5 \\
+\hline
+14 & vEBTree & 2.55126953125E-4 & 1.727294921875E-4\\
+\hline
+14 & SplayTree & 3.253173828125E-4 & 2.764892578125E-4 \\
+\hline
+\hline
+15 & ABBTree & 2.960205078125E-4 & 2.4169921875E-4 \\
+\hline
+15 & AVLTree & 3.1005859375E-4 & 7.2021484375E-5 \\
+\hline
+15 & vEBTree & 2.801513671875E-4  & 1.3946533203125E-4\\
+\hline
+15 & SplayTree & 4.5440673828125E-4 & 3.8604736328125E-4 \\
+\hline
+\end{tabular}
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{$n$} & \textbf{Tipo Árbol} & \textbf{T/P Construcción (ms)} & \textbf{T/P Búsqueda (ms)} \\
+\hline
+16 & ABBTree & 3.399658203125E-4 & 2.117919921875E-4 \\
+\hline
+16 & AVLTree & 4.083251953125E-4  & 3.5858154296875E-5 \\
+\hline
+16 & vEBTree & 2.960205078125E-4  & 1.57318115234375E-4 \\
+\hline
+16 & SplayTree & 4.9835205078125E-4 & 3.07464599609375E-4 \\
+\hline
+\hline
+17 & ABBTree & 5.389404296875E-4  & 4.659271240234375E-4 \\
+\hline
+17 & AVLTree & 4.743194580078125E-4 & 6.32476806640625E-5 \\
+\hline
+17 & vEBTree & 3.643798828125E-4  & 1.975250244140625E-4\\
+\hline
+17 & SplayTree & 8.055877685546875E-4 & 7.17010498046875E-4 \\
+\hline
+\hline
+18 & ABBTree & 4.204559326171875E-4 & 3.5675048828125E-4 \\
+\hline
+18 & AVLTree & 5.981063842773437E-4 & 3.39508056640625E-5 \\
+\hline
+18 & vEBTree & 3.4027099609375E-4 & 2.185821533203125E-4 \\
+\hline
+18 & SplayTree & 7.726669311523438E-4  & 6.854248046875E-4 \\
+\hline
+\hline
+19 & ABBTree & 5.132865905761719E-4 & 4.1212081909179686E-4 \\
+\hline
+19 & AVLTree & 7.082176208496094E-4  & 3.652572631835937E-5 \\
+\hline
+19 & vEBTree & 3.523445129394531E-4 & 2.6578903198242186E-4\\
+\hline
+19 & SplayTree & 9.218597412109375E-4 & 7.559776306152344E-4 \\
+\hline
+\hline
+20 & ABBTree & 5.592250823974609E-4 & 4.915428161621093E-4 \\
+\hline
+20 & AVLTree & 7.883644104003906E-4 & 8.368492126464844E-5 \\
+\hline
+20 & vEBTree & 3.510951995849609E-4 & 2.821636199951172E-4\\
+\hline
+20 & SplayTree & 9.749412536621093E-4 & 8.31613540649414E-4 \\
+\hline
+\end{tabular}
+\\ \\
+
+\subsubsection{Distribución 2 ($a=1.5$)}
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{$n$} & \textbf{Tipo Árbol} & \textbf{T/P Construcción (ms)} & \textbf{T/P Búsqueda (ms)} \\
+\hline
+10 & ABBTree & 1.5625E-4 & 1.46484375E-4 \\
+\hline
+10 & AVLTree & 1.46484375E-4 & 1.5625E-4 \\
+\hline
+10 & vEBTree & 3.125E-4 & 0.0\\
+\hline
+10 & SplayTree & 1.46484375E-4 & 0.0 \\
+\hline
+\hline
+11 & ABBTree & 1.5625E-4 & 8.30078125E-5 \\
+\hline
+11 & AVLTree & 4.58984375E-4 & 1.46484375E-4 \\
+\hline
+11 & vEBTree & 1.46484375E-4 & 1.513671875E-4\\
+\hline
+11 & SplayTree & 2.24609375E-4 & 3.857421875E-4 \\
+\hline
+\hline
+12 & ABBTree & 2.24609375E-4 & 1.4892578125E-4  \\
+\hline
+12 & AVLTree & 2.685546875E-4 & 0.0 \\
+\hline
+12 & vEBTree & 1.5869140625E-4 & 7.568359375E-5\\
+\hline
+12 & SplayTree & 2.34375E-44 & 2.685546875E-4 \\
+\hline
+\hline
+13 & ABBTree & 9.521484375E-5 & 2.6611328125E-4  \\
+\hline
+13 & AVLTree & 2.69775390625E-4 & 1.953125E-5 \\
+\hline
+13 & vEBTree & 2.099609375E-4 & 9.765625E-5\\
+\hline
+13 & SplayTree & 2.25830078125E-4 & 1.8798828125E-4 \\
+\hline
+\hline
+14 & ABBTree & 2.264404296875E-4 & 1.812744140625E-4 \\
+\hline
+14 & AVLTree & 2.484130859375E-4 & 3.84521484375E-5 \\
+\hline
+14 & vEBTree & 2.55126953125E-4 & 1.727294921875E-4\\
+\hline
+14 & SplayTree & 3.253173828125E-4 & 2.764892578125E-4 \\
+\hline
+\hline
+15 & ABBTree & 2.960205078125E-4 & 2.4169921875E-4 \\
+\hline
+15 & AVLTree & 3.1005859375E-4 & 7.2021484375E-5 \\
+\hline
+15 & vEBTree & 2.801513671875E-4  & 1.3946533203125E-4\\
+\hline
+15 & SplayTree & 4.5440673828125E-4 & 3.8604736328125E-4 \\
+\hline
+\end{tabular}
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{$n$} & \textbf{Tipo Árbol} & \textbf{T/P Construcción (ms)} & \textbf{T/P Búsqueda (ms)} \\
+\hline
+16 & ABBTree & 3.399658203125E-4 & 2.117919921875E-4 \\
+\hline
+16 & AVLTree & 4.083251953125E-4  & 3.5858154296875E-5 \\
+\hline
+16 & vEBTree & 2.960205078125E-4  & 1.57318115234375E-4 \\
+\hline
+16 & SplayTree & 4.9835205078125E-4 & 3.07464599609375E-4 \\
+\hline
+\hline
+17 & ABBTree & 5.389404296875E-4  & 4.659271240234375E-4 \\
+\hline
+17 & AVLTree & 4.743194580078125E-4 & 6.32476806640625E-5 \\
+\hline
+17 & vEBTree & 3.643798828125E-4  & 1.975250244140625E-4\\
+\hline
+17 & SplayTree & 8.055877685546875E-4 & 7.17010498046875E-4 \\
+\hline
+\hline
+18 & ABBTree & 4.204559326171875E-4 & 3.5675048828125E-4 \\
+\hline
+18 & AVLTree & 5.981063842773437E-4 & 3.39508056640625E-5 \\
+\hline
+18 & vEBTree & 3.4027099609375E-4 & 2.185821533203125E-4 \\
+\hline
+18 & SplayTree & 7.726669311523438E-4  & 6.854248046875E-4 \\
+\hline
+\hline
+19 & ABBTree & 5.132865905761719E-4 & 4.1212081909179686E-4 \\
+\hline
+19 & AVLTree & 7.082176208496094E-4  & 3.652572631835937E-5 \\
+\hline
+19 & vEBTree & 3.523445129394531E-4 & 2.6578903198242186E-4\\
+\hline
+19 & SplayTree & 9.218597412109375E-4 & 7.559776306152344E-4 \\
+\hline
+\hline
+20 & ABBTree & 5.592250823974609E-4 & 4.915428161621093E-4 \\
+\hline
+20 & AVLTree & 7.883644104003906E-4 & 8.368492126464844E-5 \\
+\hline
+20 & vEBTree & 3.510951995849609E-4 & 2.821636199951172E-4\\
+\hline
+20 & SplayTree & 9.749412536621093E-4 & 8.31613540649414E-4 \\
 \hline
 \end{tabular}
 \\ \\
@@ -247,144 +568,502 @@ A continuación se presenta en una tabla los resultados del experimento de inser
 \end{tabular}
 \\ \\
 
-\subsubsection{Búsqueda}
-A continuaci\'on se presenta en una tabla los resultados del experimento de búsqueda de rect\'angulos generados de datos reales en un R-Tree en el arbol generado con el m\'etodo de \textit{QuadraticSplit}: \\
-\begin{tabular}{|c|c|c|}
+\subsubsection{Distribución 2 ($a=2.0$)}
+
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-\textbf{Tama\~no} & \textbf{Cantidad promedio de I/O's} & \textbf{Tiempo promedio (milisegundos)} \\
+\textbf{$n$} & \textbf{Tipo Árbol} & \textbf{T/P Construcción (ms)} & \textbf{T/P Búsqueda (ms)} \\
 \hline
-10482 & 0.011450381679389313 & 0.004770992366412214 \\
+10 & ABBTree & 1.5625E-4 & 1.46484375E-4 \\
+\hline
+10 & AVLTree & 1.46484375E-4 & 1.5625E-4 \\
+\hline
+10 & vEBTree & 3.125E-4 & 0.0\\
+\hline
+10 & SplayTree & 1.46484375E-4 & 0.0 \\
+\hline
+\hline
+11 & ABBTree & 1.5625E-4 & 8.30078125E-5 \\
+\hline
+11 & AVLTree & 4.58984375E-4 & 1.46484375E-4 \\
+\hline
+11 & vEBTree & 1.46484375E-4 & 1.513671875E-4\\
+\hline
+11 & SplayTree & 2.24609375E-4 & 3.857421875E-4 \\
+\hline
+\hline
+12 & ABBTree & 2.24609375E-4 & 1.4892578125E-4  \\
+\hline
+12 & AVLTree & 2.685546875E-4 & 0.0 \\
+\hline
+12 & vEBTree & 1.5869140625E-4 & 7.568359375E-5\\
+\hline
+12 & SplayTree & 2.34375E-44 & 2.685546875E-4 \\
+\hline
+\hline
+13 & ABBTree & 9.521484375E-5 & 2.6611328125E-4  \\
+\hline
+13 & AVLTree & 2.69775390625E-4 & 1.953125E-5 \\
+\hline
+13 & vEBTree & 2.099609375E-4 & 9.765625E-5\\
+\hline
+13 & SplayTree & 2.25830078125E-4 & 1.8798828125E-4 \\
+\hline
+\hline
+14 & ABBTree & 2.264404296875E-4 & 1.812744140625E-4 \\
+\hline
+14 & AVLTree & 2.484130859375E-4 & 3.84521484375E-5 \\
+\hline
+14 & vEBTree & 2.55126953125E-4 & 1.727294921875E-4\\
+\hline
+14 & SplayTree & 3.253173828125E-4 & 2.764892578125E-4 \\
+\hline
+\hline
+15 & ABBTree & 2.960205078125E-4 & 2.4169921875E-4 \\
+\hline
+15 & AVLTree & 3.1005859375E-4 & 7.2021484375E-5 \\
+\hline
+15 & vEBTree & 2.801513671875E-4  & 1.3946533203125E-4\\
+\hline
+15 & SplayTree & 4.5440673828125E-4 & 3.8604736328125E-4 \\
+\hline
+\end{tabular}
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{$n$} & \textbf{Tipo Árbol} & \textbf{T/P Construcción (ms)} & \textbf{T/P Búsqueda (ms)} \\
+\hline
+16 & ABBTree & 3.399658203125E-4 & 2.117919921875E-4 \\
+\hline
+16 & AVLTree & 4.083251953125E-4  & 3.5858154296875E-5 \\
+\hline
+16 & vEBTree & 2.960205078125E-4  & 1.57318115234375E-4 \\
+\hline
+16 & SplayTree & 4.9835205078125E-4 & 3.07464599609375E-4 \\
+\hline
+\hline
+17 & ABBTree & 5.389404296875E-4  & 4.659271240234375E-4 \\
+\hline
+17 & AVLTree & 4.743194580078125E-4 & 6.32476806640625E-5 \\
+\hline
+17 & vEBTree & 3.643798828125E-4  & 1.975250244140625E-4\\
+\hline
+17 & SplayTree & 8.055877685546875E-4 & 7.17010498046875E-4 \\
+\hline
+\hline
+18 & ABBTree & 4.204559326171875E-4 & 3.5675048828125E-4 \\
+\hline
+18 & AVLTree & 5.981063842773437E-4 & 3.39508056640625E-5 \\
+\hline
+18 & vEBTree & 3.4027099609375E-4 & 2.185821533203125E-4 \\
+\hline
+18 & SplayTree & 7.726669311523438E-4  & 6.854248046875E-4 \\
+\hline
+\hline
+19 & ABBTree & 5.132865905761719E-4 & 4.1212081909179686E-4 \\
+\hline
+19 & AVLTree & 7.082176208496094E-4  & 3.652572631835937E-5 \\
+\hline
+19 & vEBTree & 3.523445129394531E-4 & 2.6578903198242186E-4\\
+\hline
+19 & SplayTree & 9.218597412109375E-4 & 7.559776306152344E-4 \\
+\hline
+\hline
+20 & ABBTree & 5.592250823974609E-4 & 4.915428161621093E-4 \\
+\hline
+20 & AVLTree & 7.883644104003906E-4 & 8.368492126464844E-5 \\
+\hline
+20 & vEBTree & 3.510951995849609E-4 & 2.821636199951172E-4\\
+\hline
+20 & SplayTree & 9.749412536621093E-4 & 8.31613540649414E-4 \\
 \hline
 \end{tabular}
 \\ \\
 
-A continuaci\'on se presenta en una tabla los resultados del experimento de búsqueda de rect\'angulos generados de datos reales en un R-Tree en el arbol generado con el m\'etodo de \textit{LinearSplit}: \\
-\begin{tabular}{|c|c|c|}
+\subsubsection{Distribución 3 ($a=1.2$)}
+
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-\textbf{Tama\~no} & \textbf{Cantidad promedio de I/O's} & \textbf{Tiempo promedio (milisegundos)} \\
+\textbf{$n$} & \textbf{Tipo Árbol} & \textbf{T/P Construcción (ms)} & \textbf{T/P Búsqueda (ms)} \\
 \hline
-10482 & 0.0 & 0.004770992366412214 \\
+10 & ABBTree & 1.5625E-4 & 1.46484375E-4 \\
+\hline
+10 & AVLTree & 1.46484375E-4 & 1.5625E-4 \\
+\hline
+10 & vEBTree & 3.125E-4 & 0.0\\
+\hline
+10 & SplayTree & 1.46484375E-4 & 0.0 \\
+\hline
+\hline
+11 & ABBTree & 1.5625E-4 & 8.30078125E-5 \\
+\hline
+11 & AVLTree & 4.58984375E-4 & 1.46484375E-4 \\
+\hline
+11 & vEBTree & 1.46484375E-4 & 1.513671875E-4\\
+\hline
+11 & SplayTree & 2.24609375E-4 & 3.857421875E-4 \\
+\hline
+\hline
+12 & ABBTree & 2.24609375E-4 & 1.4892578125E-4  \\
+\hline
+12 & AVLTree & 2.685546875E-4 & 0.0 \\
+\hline
+12 & vEBTree & 1.5869140625E-4 & 7.568359375E-5\\
+\hline
+12 & SplayTree & 2.34375E-44 & 2.685546875E-4 \\
+\hline
+\hline
+13 & ABBTree & 9.521484375E-5 & 2.6611328125E-4  \\
+\hline
+13 & AVLTree & 2.69775390625E-4 & 1.953125E-5 \\
+\hline
+13 & vEBTree & 2.099609375E-4 & 9.765625E-5\\
+\hline
+13 & SplayTree & 2.25830078125E-4 & 1.8798828125E-4 \\
+\hline
+\hline
+14 & ABBTree & 2.264404296875E-4 & 1.812744140625E-4 \\
+\hline
+14 & AVLTree & 2.484130859375E-4 & 3.84521484375E-5 \\
+\hline
+14 & vEBTree & 2.55126953125E-4 & 1.727294921875E-4\\
+\hline
+14 & SplayTree & 3.253173828125E-4 & 2.764892578125E-4 \\
+\hline
+\hline
+15 & ABBTree & 2.960205078125E-4 & 2.4169921875E-4 \\
+\hline
+15 & AVLTree & 3.1005859375E-4 & 7.2021484375E-5 \\
+\hline
+15 & vEBTree & 2.801513671875E-4  & 1.3946533203125E-4\\
+\hline
+15 & SplayTree & 4.5440673828125E-4 & 3.8604736328125E-4 \\
+\hline
+\end{tabular}
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{$n$} & \textbf{Tipo Árbol} & \textbf{T/P Construcción (ms)} & \textbf{T/P Búsqueda (ms)} \\
+\hline
+16 & ABBTree & 3.399658203125E-4 & 2.117919921875E-4 \\
+\hline
+16 & AVLTree & 4.083251953125E-4  & 3.5858154296875E-5 \\
+\hline
+16 & vEBTree & 2.960205078125E-4  & 1.57318115234375E-4 \\
+\hline
+16 & SplayTree & 4.9835205078125E-4 & 3.07464599609375E-4 \\
+\hline
+\hline
+17 & ABBTree & 5.389404296875E-4  & 4.659271240234375E-4 \\
+\hline
+17 & AVLTree & 4.743194580078125E-4 & 6.32476806640625E-5 \\
+\hline
+17 & vEBTree & 3.643798828125E-4  & 1.975250244140625E-4\\
+\hline
+17 & SplayTree & 8.055877685546875E-4 & 7.17010498046875E-4 \\
+\hline
+\hline
+18 & ABBTree & 4.204559326171875E-4 & 3.5675048828125E-4 \\
+\hline
+18 & AVLTree & 5.981063842773437E-4 & 3.39508056640625E-5 \\
+\hline
+18 & vEBTree & 3.4027099609375E-4 & 2.185821533203125E-4 \\
+\hline
+18 & SplayTree & 7.726669311523438E-4  & 6.854248046875E-4 \\
+\hline
+\hline
+19 & ABBTree & 5.132865905761719E-4 & 4.1212081909179686E-4 \\
+\hline
+19 & AVLTree & 7.082176208496094E-4  & 3.652572631835937E-5 \\
+\hline
+19 & vEBTree & 3.523445129394531E-4 & 2.6578903198242186E-4\\
+\hline
+19 & SplayTree & 9.218597412109375E-4 & 7.559776306152344E-4 \\
+\hline
+\hline
+20 & ABBTree & 5.592250823974609E-4 & 4.915428161621093E-4 \\
+\hline
+20 & AVLTree & 7.883644104003906E-4 & 8.368492126464844E-5 \\
+\hline
+20 & vEBTree & 3.510951995849609E-4 & 2.821636199951172E-4\\
+\hline
+20 & SplayTree & 9.749412536621093E-4 & 8.31613540649414E-4 \\
 \hline
 \end{tabular}
 \\ \\
 
-\subsection{Datos Generados}
-\subsubsection{Inserciones}
-A continuación se presenta en una tabla los resultados del experimento de inserción de rectángulos aleatorios en un R-Tree con el método de \textit{QuadraticSplit}: \\
-\begin{tabular}{|c|c|c|}
+\subsubsection{Distribución 3 ($a=1.5$)}
+
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-\textbf{Tama\~no ($2^n$)} & \textbf{Cantidad I/O's} & \textbf{Tiempo (milisegundos)} \\
+\textbf{$n$} & \textbf{Tipo Árbol} & \textbf{T/P Construcción (ms)} & \textbf{T/P Búsqueda (ms)} \\
 \hline
-9 & 755 & 43 \\
+10 & ABBTree & 1.5625E-4 & 1.46484375E-4 \\
 \hline
-12 & 10656 & 115 \\
+10 & AVLTree & 1.46484375E-4 & 1.5625E-4 \\
 \hline
-15 & 118832 & 1043 \\
+10 & vEBTree & 3.125E-4 & 0.0\\
 \hline
-18 & 1193602 & 9624 \\
+10 & SplayTree & 1.46484375E-4 & 0.0 \\
 \hline
-21 & 11553820 & 84628 \\
 \hline
-24 & 141142799 & 476308 \\
+11 & ABBTree & 1.5625E-4 & 8.30078125E-5 \\
+\hline
+11 & AVLTree & 4.58984375E-4 & 1.46484375E-4 \\
+\hline
+11 & vEBTree & 1.46484375E-4 & 1.513671875E-4\\
+\hline
+11 & SplayTree & 2.24609375E-4 & 3.857421875E-4 \\
+\hline
+\hline
+12 & ABBTree & 2.24609375E-4 & 1.4892578125E-4  \\
+\hline
+12 & AVLTree & 2.685546875E-4 & 0.0 \\
+\hline
+12 & vEBTree & 1.5869140625E-4 & 7.568359375E-5\\
+\hline
+12 & SplayTree & 2.34375E-44 & 2.685546875E-4 \\
+\hline
+\hline
+13 & ABBTree & 9.521484375E-5 & 2.6611328125E-4  \\
+\hline
+13 & AVLTree & 2.69775390625E-4 & 1.953125E-5 \\
+\hline
+13 & vEBTree & 2.099609375E-4 & 9.765625E-5\\
+\hline
+13 & SplayTree & 2.25830078125E-4 & 1.8798828125E-4 \\
+\hline
+\hline
+14 & ABBTree & 2.264404296875E-4 & 1.812744140625E-4 \\
+\hline
+14 & AVLTree & 2.484130859375E-4 & 3.84521484375E-5 \\
+\hline
+14 & vEBTree & 2.55126953125E-4 & 1.727294921875E-4\\
+\hline
+14 & SplayTree & 3.253173828125E-4 & 2.764892578125E-4 \\
+\hline
+\hline
+15 & ABBTree & 2.960205078125E-4 & 2.4169921875E-4 \\
+\hline
+15 & AVLTree & 3.1005859375E-4 & 7.2021484375E-5 \\
+\hline
+15 & vEBTree & 2.801513671875E-4  & 1.3946533203125E-4\\
+\hline
+15 & SplayTree & 4.5440673828125E-4 & 3.8604736328125E-4 \\
+\hline
+\end{tabular}
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{$n$} & \textbf{Tipo Árbol} & \textbf{T/P Construcción (ms)} & \textbf{T/P Búsqueda (ms)} \\
+\hline
+16 & ABBTree & 3.399658203125E-4 & 2.117919921875E-4 \\
+\hline
+16 & AVLTree & 4.083251953125E-4  & 3.5858154296875E-5 \\
+\hline
+16 & vEBTree & 2.960205078125E-4  & 1.57318115234375E-4 \\
+\hline
+16 & SplayTree & 4.9835205078125E-4 & 3.07464599609375E-4 \\
+\hline
+\hline
+17 & ABBTree & 5.389404296875E-4  & 4.659271240234375E-4 \\
+\hline
+17 & AVLTree & 4.743194580078125E-4 & 6.32476806640625E-5 \\
+\hline
+17 & vEBTree & 3.643798828125E-4  & 1.975250244140625E-4\\
+\hline
+17 & SplayTree & 8.055877685546875E-4 & 7.17010498046875E-4 \\
+\hline
+\hline
+18 & ABBTree & 4.204559326171875E-4 & 3.5675048828125E-4 \\
+\hline
+18 & AVLTree & 5.981063842773437E-4 & 3.39508056640625E-5 \\
+\hline
+18 & vEBTree & 3.4027099609375E-4 & 2.185821533203125E-4 \\
+\hline
+18 & SplayTree & 7.726669311523438E-4  & 6.854248046875E-4 \\
+\hline
+\hline
+19 & ABBTree & 5.132865905761719E-4 & 4.1212081909179686E-4 \\
+\hline
+19 & AVLTree & 7.082176208496094E-4  & 3.652572631835937E-5 \\
+\hline
+19 & vEBTree & 3.523445129394531E-4 & 2.6578903198242186E-4\\
+\hline
+19 & SplayTree & 9.218597412109375E-4 & 7.559776306152344E-4 \\
+\hline
+\hline
+20 & ABBTree & 5.592250823974609E-4 & 4.915428161621093E-4 \\
+\hline
+20 & AVLTree & 7.883644104003906E-4 & 8.368492126464844E-5 \\
+\hline
+20 & vEBTree & 3.510951995849609E-4 & 2.821636199951172E-4\\
+\hline
+20 & SplayTree & 9.749412536621093E-4 & 8.31613540649414E-4 \\
 \hline
 \end{tabular}
 \\ \\
-Los gr\'aficos de ambos datos, en escala logar\'itmica para su mejor visualizaci\'on se encuentran en la Figura~\ref{fig:f1} y ~\ref{fig:f2}.
 
-Ahora se presenta en una tabla los resultados del experimento de inserción de rectángulos aleatorios en un R-Tree con el método de \textit{LinearSplit}: \\
-\begin{tabular}{|c|c|c|}
+\subsubsection{Distribución 3 ($a=2.0$)}
+
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-\textbf{Tama\~no ($2^n$)} & \textbf{Cantidad I/O's} & \textbf{Tiempo (milisegundos)} \\
+\textbf{$n$} & \textbf{Tipo Árbol} & \textbf{T/P Construcción (ms)} & \textbf{T/P Búsqueda (ms)} \\
 \hline
-9 & 740 & 23 \\
+10 & ABBTree & 1.5625E-4 & 1.46484375E-4 \\
 \hline
-12 & 10471 & 36 \\
+10 & AVLTree & 1.46484375E-4 & 1.5625E-4 \\
 \hline
-15 & 113245 & 451 \\
+10 & vEBTree & 3.125E-4 & 0.0\\
 \hline
-18 & 1192441 & 4683 \\
+10 & SplayTree & 1.46484375E-4 & 0.0 \\
 \hline
-21 & 11118402 & 46764 \\
 \hline
-24 & 136824746 & 252177 \\
+11 & ABBTree & 1.5625E-4 & 8.30078125E-5 \\
+\hline
+11 & AVLTree & 4.58984375E-4 & 1.46484375E-4 \\
+\hline
+11 & vEBTree & 1.46484375E-4 & 1.513671875E-4\\
+\hline
+11 & SplayTree & 2.24609375E-4 & 3.857421875E-4 \\
+\hline
+\hline
+12 & ABBTree & 2.24609375E-4 & 1.4892578125E-4  \\
+\hline
+12 & AVLTree & 2.685546875E-4 & 0.0 \\
+\hline
+12 & vEBTree & 1.5869140625E-4 & 7.568359375E-5\\
+\hline
+12 & SplayTree & 2.34375E-44 & 2.685546875E-4 \\
+\hline
+\hline
+13 & ABBTree & 9.521484375E-5 & 2.6611328125E-4  \\
+\hline
+13 & AVLTree & 2.69775390625E-4 & 1.953125E-5 \\
+\hline
+13 & vEBTree & 2.099609375E-4 & 9.765625E-5\\
+\hline
+13 & SplayTree & 2.25830078125E-4 & 1.8798828125E-4 \\
+\hline
+\hline
+14 & ABBTree & 2.264404296875E-4 & 1.812744140625E-4 \\
+\hline
+14 & AVLTree & 2.484130859375E-4 & 3.84521484375E-5 \\
+\hline
+14 & vEBTree & 2.55126953125E-4 & 1.727294921875E-4\\
+\hline
+14 & SplayTree & 3.253173828125E-4 & 2.764892578125E-4 \\
+\hline
+\hline
+15 & ABBTree & 2.960205078125E-4 & 2.4169921875E-4 \\
+\hline
+15 & AVLTree & 3.1005859375E-4 & 7.2021484375E-5 \\
+\hline
+15 & vEBTree & 2.801513671875E-4  & 1.3946533203125E-4\\
+\hline
+15 & SplayTree & 4.5440673828125E-4 & 3.8604736328125E-4 \\
 \hline
 \end{tabular}
 
-Los gr\'aficos de ambos datos, en escala logar\'itmica para su mejor visualizaci\'on se encuentran en la Figura~\ref{fig:f3} y ~\ref{fig:f4}.
-
-\subsubsection{Búsqueda}
-A continuación se presenta en una tabla los resultados del experimento de busqueda de rectángulos aleatorios en un R-Tree con el método de inserción \textit{QuadraticSplit}: \\
-\begin{tabular}{|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-\textbf{Tama\~no ($2^n$)} & \textbf{Cantidad promedio de I/O's} & \textbf{Tiempo promedio (milisegundos)} \\
+\textbf{$n$} & \textbf{Tipo Árbol} & \textbf{T/P Construcción (ms)} & \textbf{T/P Búsqueda (ms)} \\
 \hline
-9 & 0.0 & 0.0 \\
+16 & ABBTree & 3.399658203125E-4 & 2.117919921875E-4 \\
 \hline
-12 & 0.0 & 0.0 \\
+16 & AVLTree & 4.083251953125E-4  & 3.5858154296875E-5 \\
 \hline
-15 & 0.0 & 0.0 \\
+16 & vEBTree & 2.960205078125E-4  & 1.57318115234375E-4 \\
 \hline
-18 & 0.0 & 7.629510948348211E-5 \\
+16 & SplayTree & 4.9835205078125E-4 & 3.07464599609375E-4 \\
 \hline
-21 & 0.0 & 3.337863290656367E-5 \\
 \hline
-24 & 0.0 & 2.384186643667213E-5 \\
+17 & ABBTree & 5.389404296875E-4  & 4.659271240234375E-4 \\
+\hline
+17 & AVLTree & 4.743194580078125E-4 & 6.32476806640625E-5 \\
+\hline
+17 & vEBTree & 3.643798828125E-4  & 1.975250244140625E-4\\
+\hline
+17 & SplayTree & 8.055877685546875E-4 & 7.17010498046875E-4 \\
+\hline
+\hline
+18 & ABBTree & 4.204559326171875E-4 & 3.5675048828125E-4 \\
+\hline
+18 & AVLTree & 5.981063842773437E-4 & 3.39508056640625E-5 \\
+\hline
+18 & vEBTree & 3.4027099609375E-4 & 2.185821533203125E-4 \\
+\hline
+18 & SplayTree & 7.726669311523438E-4  & 6.854248046875E-4 \\
+\hline
+\hline
+19 & ABBTree & 5.132865905761719E-4 & 4.1212081909179686E-4 \\
+\hline
+19 & AVLTree & 7.082176208496094E-4  & 3.652572631835937E-5 \\
+\hline
+19 & vEBTree & 3.523445129394531E-4 & 2.6578903198242186E-4\\
+\hline
+19 & SplayTree & 9.218597412109375E-4 & 7.559776306152344E-4 \\
+\hline
+\hline
+20 & ABBTree & 5.592250823974609E-4 & 4.915428161621093E-4 \\
+\hline
+20 & AVLTree & 7.883644104003906E-4 & 8.368492126464844E-5 \\
+\hline
+20 & vEBTree & 3.510951995849609E-4 & 2.821636199951172E-4\\
+\hline
+20 & SplayTree & 9.749412536621093E-4 & 8.31613540649414E-4 \\
 \hline
 \end{tabular}
 \\ \\
-
-A continuación se presenta en una tabla los resultados del experimento de busqueda de rectángulos aleatorios en un R-Tree con el método de inserción \textit{LinearSplit}: \\
-\begin{tabular}{|c|c|c|}
-\hline
-\textbf{Tama\~no ($2^n$)} & \textbf{Cantidad promedio de I/O's} & \textbf{Tiempo promedio (milisegundos)} \\
-\hline
-9 & 0.0 & 0.0 \\
-\hline
-12 & 0.0 & 0.0024449877750611247 \\
-\hline
-15 & 0.0 & 9.157509157509158E-4 \\
-\hline
-18 & 0.0 & 1.1444266422522316E-4 \\
-\hline
-21 & 0.0 & 4.291538516558186E-5 \\
-\hline
-24 & 0.0 & 2.7418146402172948E-5 \\
-\hline
-\end{tabular}
-\\ \\
-
 
 
 
 \newpage
 \subsection{Gráficos}
-\iffalse
+Ahora se presentan gr\'aficos donde se muestra performance de ABBTree (azul), AVLTree (rojo) y SplayTree (amarillo), tanto para inserci\'on como para b\'usqueda. En las figuras ~\ref{fig:f1} y ~\ref{fig:f2} se muestra para la secuencia $1$, en las figuras ~\ref{fig:f3} y ~\ref{fig:f4} se muestra para la secuencia $2$ con $a=1.5$ y en las figuras ~\ref{fig:f5} y ~\ref{fig:f6} se muestran para la secuencia $3$ con $a=2.0$ (se han gráficado tiempo versus logaritmo del tamaño de la entrada).
+
+
+\iftrue
 \begin{figure}[bp!]
   \centering
-    \includegraphics[width=0.8\textwidth]{quadratic_io}
-  \caption{Gr\'afico Tama\~no vs I/O's para QuadraticSplit}
+    \includegraphics[width=0.8\textwidth]{freq1_ins}
+  \caption{Tiempo inserci\'on para secuencia 1}
   \label{fig:f1}
 \end{figure}
 
 \begin{figure}[bp!]
   \centering
-    \includegraphics[width=0.8\textwidth]{quadratic_tiempo}
-  \caption{Gr\'afico Tama\~no vs Tiempo para QuadraticSplit}
+    \includegraphics[width=0.8\textwidth]{freq1_busq}
+  \caption{Tiempo b\'usqueda para secuencia 1}
   \label{fig:f2}
 \end{figure}
 
 \begin{figure}[bp!]
   \centering
-    \includegraphics[width=0.8\textwidth]{linear_io}
-  \caption{Gr\'afico Tama\~no vs I/O's para LinearSplit}
+    \includegraphics[width=0.8\textwidth]{freq215_ins}
+  \caption{Tiempo inserci\'on para secuencia 2 y $a=1.5$}
   \label{fig:f3}
 \end{figure}
 
 \begin{figure}[bp!]
   \centering
-    \includegraphics[width=0.8\textwidth]{linear_tiempo}
-  \caption{Gr\'afico Tama\~no vs Tiempo para LinearSplit}
+    \includegraphics[width=0.8\textwidth]{freq215_busq}
+  \caption{Tiempo b\'usqueda para secuencia 2 y$a=1.5$}
   \label{fig:f4}
+\end{figure}
+
+\begin{figure}[bp!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{freq320_ins}
+  \caption{Tiempo inserci\'on para secuencia 2 y$a=2.0$}
+  \label{fig:f5}
+\end{figure}
+
+\begin{figure}[bp!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{freq320_busq}
+  \caption{Tiempo b\'usqueda para secuencia 3 y$a=2.0$}
+  \label{fig:f6}
 \end{figure}
 \fi
 \newpage
